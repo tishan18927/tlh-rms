@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: tlh-rms-service
+  datasource:
+    url: ${tlh.rms.db.url}
+    username: ${tlh.rms.db.username}
+    password: ${tlh.rms.db.password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8430

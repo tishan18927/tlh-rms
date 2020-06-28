@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+      show-sql: true
+tlh:
+  rms:
+    db:
+      url: jdbc:postgresql://localhost:5432/tlh-rms
+      username: postgres
+      password: sandu
