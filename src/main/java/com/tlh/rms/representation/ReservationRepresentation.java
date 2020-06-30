@@ -1,6 +1,7 @@
 package com.tlh.rms.representation;
 
-import com.tlh.rms.billing.representation.PaymentRepresentation;
+import com.tlh.rms.billing.representation.Payment;
+import com.tlh.rms.billing.representation.Reservation;
 import com.tlh.rms.data.entities.RoomEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,11 +21,11 @@ public class ReservationRepresentation {
     private RoomEntity room;
 
     @NotNull(message = "Please add payment details!")
-    private PaymentRepresentation payment;
+    private Payment<Reservation> payment;
 
     @NotNull(message = "Please specify checking-in date!")
     private Date from;
 
-    @NotNull(message = "Please specify check-out date!")
+    @NotNull(message = "Please specify checking-out date!")
     private Date to;
 }

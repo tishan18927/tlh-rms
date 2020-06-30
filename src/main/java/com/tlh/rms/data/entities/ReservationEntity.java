@@ -25,6 +25,9 @@ public class ReservationEntity extends BaseEntity{
     @Column(name = "RESERVED_BY", columnDefinition = "VARCHAR(36)", nullable = false)
     private String reservedBy;
 
+    @Column(name = "RESERVED_AT", nullable = false)
+    private Long reservedAt;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "ROOM", nullable = false)
     private RoomEntity room;

@@ -8,7 +8,9 @@ public class RepresentationToEntityConverter {
     public static ReservationEntity convertToReservationEntity(ReservationRepresentation representation) {
         ReservationEntity entity = new ReservationEntity();
 
+        //Todo get value by token
         entity.setReservedBy("test-user");
+        entity.setReservedAt(System.currentTimeMillis());
         entity.setFirstDate(representation.getFrom());
         entity.setLastDate(representation.getTo());
 

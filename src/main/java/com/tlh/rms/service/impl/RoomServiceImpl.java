@@ -1,5 +1,7 @@
 package com.tlh.rms.service.impl;
 
+import com.tlh.rms.common.error.ErrorType;
+import com.tlh.rms.common.error.ServiceException;
 import com.tlh.rms.data.RoomRepository;
 import com.tlh.rms.data.entities.RoomEntity;
 import com.tlh.rms.representation.ReservationRepresentation;
@@ -19,25 +21,30 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Set<RoomEntity> availabilitySearch(Long hotelId, Date startingDate, Date endDate, int personCount) {
-        return roomRepository.findAllAvailable(hotelId, endDate, startingDate, personCount);
+        Set<RoomEntity> availableRooms = roomRepository.findAllAvailable(hotelId, endDate, startingDate, personCount);
+
+        if (Objects.isNull(availableRooms) || availableRooms.isEmpty()) {
+            throw new ServiceException(ErrorType.NO_ROOMS_AVAILABLE);
+        }
+
+        return availableRooms;
     }
 
     @Override
     public RoomEntity checkRoomAvailability(ReservationRepresentation representation) {
         return checkRoomAvailability(
                 representation.getRoom().getId(),
-                representation.getHotelId(),
                 representation.getFrom(),
                 representation.getTo()
         );
     }
 
     @Override
-    public RoomEntity checkRoomAvailability(Long id, Long hotelId, Date startingDate, Date endDate) {
+    public RoomEntity checkRoomAvailability(Long id, Date startingDate, Date endDate) {
         RoomEntity available = roomRepository.getAvailabilityForRoom(id, endDate, startingDate);
 
         if (Objects.isNull(available)) {
-            throw new RuntimeException("Room Unavailable. Please select another.");
+            throw new ServiceException(ErrorType.ROOM_ALREADY_TAKEN);
         }
         return available;
     }

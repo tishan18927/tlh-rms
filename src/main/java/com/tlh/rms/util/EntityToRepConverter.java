@@ -1,6 +1,6 @@
 package com.tlh.rms.util;
 
-import com.tlh.rms.billing.representation.PaymentRepresentation;
+import com.tlh.rms.billing.representation.Payment;
 import com.tlh.rms.data.entities.ReservationEntity;
 import com.tlh.rms.representation.ReservationRepresentation;
 
@@ -14,7 +14,7 @@ public class EntityToRepConverter {
         return rep;
     }
 
-    public static ReservationRepresentation convertToResourceRep(ReservationEntity entity, PaymentRepresentation payment) {
+    public static ReservationRepresentation convertToResourceRep(ReservationEntity entity, Payment payment) {
         ReservationRepresentation rep = convertToResourceRep(entity);
         rep.setPayment(payment);
         return rep;

@@ -25,6 +25,8 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
     Set<RoomEntity> findAllAvailable(@Param("hotel") Long hotelId, @Param("lastDate")Date lastDate, @Param("firstDate") Date firstDate, @Param("guestCount") int guestCount);
 
     @Query("SELECT DISTINCT room FROM RoomEntity room " +
+            "JOIN FETCH room.hotel hotel " +
+            "JOIN FETCH room.category category " +
             "LEFT JOIN room.reservations res " +
             "ON " +
                 "res.room = room and " +
@@ -32,6 +34,6 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
             "WHERE " +
                 "room.id = :id AND res IS NULL"
     )
-    //@Query("SELECT DISTINCT room FROM RoomEntity room LEFT JOIN room.reservations res WHERE room.id = :id AND (res.firstDate > :lastDate OR res.lastDate < :firstDate OR res IS NULL)")
+    //@Query("SELECT DISTINCT room FROM RoomEntity room JOIN FETCH room.hotel hotel JOIN FETCH room.category category LEFT JOIN room.reservations res WHERE room.id = :id AND (res.firstDate > :lastDate OR res.lastDate < :firstDate OR res IS NULL)")
     RoomEntity getAvailabilityForRoom(@Param("id") Long id, @Param("lastDate")Date lastDate, @Param("firstDate") Date firstDate);
 }

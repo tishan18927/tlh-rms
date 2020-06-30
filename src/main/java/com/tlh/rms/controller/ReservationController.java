@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/reservations")
 public class ReservationController {
@@ -16,7 +18,7 @@ public class ReservationController {
     private ReservationService reservationService;
 
     @PostMapping(path = "/reserve")
-    public ReservationRepresentation reserveRoom(@RequestBody ReservationRepresentation representation) {
+    public ReservationRepresentation reserveRoom(@Valid @RequestBody ReservationRepresentation representation) {
         return reservationService.makeReservation(representation);
     }
 }
