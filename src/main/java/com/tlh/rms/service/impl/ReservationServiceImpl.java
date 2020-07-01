@@ -35,6 +35,7 @@ public class ReservationServiceImpl implements ReservationService {
         // Check availability again on reservation for verification
         RoomEntity reservingRoom = roomService.checkRoomAvailability(reservationRepresentation);
         entity.setRoom(reservingRoom);
+        //@Transactional will rollback changes if any error is thrown while proceeding payment
         ReservationEntity saved = reservationRepository.save(entity);
 
         Payment paymentRep = reservationRepresentation.getPayment();
