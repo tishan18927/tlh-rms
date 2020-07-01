@@ -9,6 +9,6 @@ spring:
 tlh:
   rms:
     db:
-      url: jdbc:postgresql://localhost:5432/tlh-rms
-      username: postgres
-      password: sandu
+      url: <db-url>
+      username: <your-db-password>
+      password: <your-db-user>

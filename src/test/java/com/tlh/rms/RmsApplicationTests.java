@@ -3,10 +3,10 @@ package com.tlh.rms;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class RmsApplicationTests {
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 
